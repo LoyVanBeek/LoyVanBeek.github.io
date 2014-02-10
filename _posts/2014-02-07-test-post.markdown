@@ -16,3 +16,13 @@ I programmed huge ABB industrial robots before, but this was a different kind of
 Industrial robots, AFAIK, often use a proprietary programming language or DSL. Amigo, and most ROS software is either in C++ or Python. Most of Amigo's lower level software is C++ and the high-level stuff is in Python. Low-level is a bit of a strech here: in this context, i'm using the term for everyhing from sending command over EtherCAT to path planning and (3D) computer vision. 
 
 ### Smach
+[Smach](http://wiki.ros.org/executive_smach) is a state machine framework. We use it extensively to defone the high-level behavior of the robot and have,over time, developed a library of states and actions the robot can perform. These can be stringed (well, tangled) together to create more complex behaviors. 
+
+Why tangled? Because we want to deal with errors and faults, which can occur anywhere. Grasping an object may fail, navigating somewhere may fail due to several reasons as well. As with any software, we want to deal specific error and fix them in the most appropriate manner, with the robot maintaining its autonomy. 
+More on this later. 
+
+
+## Handling errors & customizing behavior
+Handling an error (due to hardware, visual perception, crashing software) can sometimes be resolved by having a human perform a subtask on request of the robot or by having the robot try a different approach to the same subtask. Often, the correct resolution of a failure is task specific. Due to several layers of hierarchical state machines, parametrizing them in a much lower level is often difficult and verbose. 
+
+Customizing behavior is often difficult, because of the same reason. It the moment, we have the "how" of a task coupled to the "which" of a task. For example: we want to specify at the task-level which object to interact with, like the closest person. The "closest" part of that specification is now part of the "how", hardcoded in the state machines. 
