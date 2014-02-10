@@ -3,5 +3,16 @@ published: false
 title: The Amigo task execution framework
 layout: post
 ---
+
+## Introduction
 The Amigo domestic service robot uses, at the highest level, smach state machines to execute its tasks.
 These state machines use the underlying ROS software to make the actual hardware do stuff.
+
+The high-level task execution framework underwent a couple steps in its evolution during my time so far on the Amigo Robocup team. 
+
+When I first arrived at the team and saw the robot rolling around for the very first time, I was awestruck. That was really really cool. Commanding it myself for the first time felt even more awesome: using RViz, just point-and-click where it should go and it just goes there! 
+I programmed huge ABB industrial robots before, but this was a different kind of beast. 
+
+Industrial robots, AFAIK, often use a proprietary programming language or DSL. Amigo, and most ROS software is either in C++ or Python. Most of Amigo's lower level software is C++ and the high-level stuff is in Python. Low-level is a bit of a strech here: in this context, i'm using the term for everyhing from sending command over EtherCAT to path planning and (3D) computer vision. 
+
+### Smach
