@@ -1,6 +1,7 @@
 ---
 published: false
-title: Test post
+title: The Amigo task execution framework
 layout: post
 ---
-Testing post
+The Amigo domestic service robot uses, at the highest level, smach state machines to execute its tasks.
+These state machines use the underlying ROS software to make the actual hardware do stuff.
