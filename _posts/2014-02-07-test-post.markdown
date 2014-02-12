@@ -21,6 +21,12 @@ Industrial robots, AFAIK, often use a proprietary programming language or DSL. A
 Why tangled? Because we want to deal with errors and faults, which can occur anywhere. Grasping an object may fail, navigating somewhere may fail due to several reasons as well. As with any software, we want to deal specific error and fix them in the most appropriate manner, with the robot maintaining its autonomy. 
 More on this later. 
 
+## World model
+
+## Evolution
+After digging in to the code for the first time, I saw what can only be described as Python being coded by a C programmer. Global variables and functions, but also circular references. Lots of room for improvement. 
+The first step was to move the functions that worked with, e.g. the robot arms into part-specific classes, i.e. classes for Arms,the Base, Head, Spindle, Perception, Worldmodel etc. 
+
 
 ## Handling errors & customizing behavior
 Handling an error (due to hardware, visual perception, crashing software) can sometimes be resolved by having a human perform a subtask on request of the robot or by having the robot try a different approach to the same subtask. Often, the correct resolution of a failure is task specific. Due to several layers of hierarchical state machines, parametrizing them in a much lower level is often difficult and verbose. 
